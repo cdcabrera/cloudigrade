@@ -43,6 +43,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg'
 ]
 
 # Apps specific to this project go here
@@ -148,7 +149,7 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    )
+    ),
 }
 
 # Message and Task Queues
@@ -156,3 +157,15 @@ REST_FRAMEWORK = {
 RABBITMQ_EXCHANGE_NAME = 'cloudigrade_inspectigrade'
 RABBITMQ_QUEUE_NAME = 'machine_images'
 RABBITMQ_URL = 'amqp://guest:guest@localhost:5672/%2F'
+
+SWAGGER_SETTINGS = {
+    'LOGIN_URL': '/admin/login',
+    'LOGOUT_URL': '/admin/logout',
+    'SECURITY_DEFINITIONS': {
+      'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+      }
+   }
+}

@@ -68,6 +68,17 @@ class AccountPolymorphicSerializer(PolymorphicSerializer):
         AwsAccount: AwsAccountSerializer,
     }
 
+    def get_fields(self):
+        """Return fields for each mapped model/serializer."""
+        fields = {}
+        for model, serial in self.model_serializer_mapping.items():
+            model_fields = serial.get_fields()
+            fields.update(
+                {model.__name__ + ':' + key: value
+                 for key, value in model_fields.items()}
+            )
+        return fields
+
 
 class ReportSerializer(Serializer):
     """Serialize a usage report for the API."""

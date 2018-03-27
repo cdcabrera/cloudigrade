@@ -8,8 +8,16 @@ from account.models import Account, AwsAccount
 
 
 class AccountViewSet(mixins.CreateModelMixin, viewsets.ReadOnlyModelViewSet):
-    """
-    List all, retrieve a single, or create a customer account.
+    """Account viewset.
+
+    retrieve:
+    Return the given account.
+
+    list:
+    Return a list of all accounts.
+
+    create:
+    Create a new account.
 
     Do not allow to update, replace, or delete an account at this view because
     we currently **only** allow accounts to be created or retrieved.

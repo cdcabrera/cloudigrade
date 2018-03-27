@@ -9,3 +9,4 @@ djangorestframework==3.7.7
 gunicorn==19.7.1
 django-polymorphic==2.0.2
 django-rest-polymorphic==0.1.4
+drf-yasg==1.6.0

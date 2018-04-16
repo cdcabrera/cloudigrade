@@ -1,3 +1,4 @@
+"""Helper utility module to wrap up common AWS S3 operations."""
 import gzip
 import logging
 

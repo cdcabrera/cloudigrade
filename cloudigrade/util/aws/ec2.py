@@ -1,3 +1,4 @@
+"""Helper utility module to wrap up common AWS EC2 operations."""
 import enum
 import logging
 
@@ -10,14 +11,6 @@ from util.exceptions import AwsSnapshotCopyLimitError, \
     AwsSnapshotNotOwnedError, SnapshotNotReadyException
 
 logger = logging.getLogger(__name__)
-
-
-# AWS has undocumented validation on the SnapshotId field in
-# snapshot related EC2 API calls.
-# We are uncertain what the pattern is. Manual testing revealed
-# that some codes pass and some fail, so for the time being
-# the value is hard-coded.
-SNAPSHOT_ID = 'snap-0f423c31dd96866b2'
 
 
 class InstanceState(enum.Enum):
@@ -248,4 +241,3 @@ def create_volume(snapshot_id, zone):
         raise SnapshotNotReadyException(message)
     volume = ec2.create_volume(SnapshotId=snapshot_id, AvailabilityZone=zone)
     return volume.id
-

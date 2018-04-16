@@ -1,3 +1,4 @@
+"""Helper utility module to wrap up miscellaneous AWS operations."""
 import logging
 import re
 from functools import wraps
@@ -5,10 +6,17 @@ from functools import wraps
 from botocore.exceptions import ClientError
 from django.utils.translation import gettext as _
 
-from util.aws.ec2 import SNAPSHOT_ID
 from util.exceptions import InvalidArn
 
 logger = logging.getLogger(__name__)
+
+
+# AWS has undocumented validation on the SnapshotId field in
+# snapshot related EC2 API calls.
+# We are uncertain what the pattern is. Manual testing revealed
+# that some codes pass and some fail, so for the time being
+# the value is hard-coded.
+SNAPSHOT_ID = 'snap-0f423c31dd96866b2'
 
 
 cloudigrade_policy = {

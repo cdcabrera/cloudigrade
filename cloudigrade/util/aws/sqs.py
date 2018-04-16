@@ -1,3 +1,4 @@
+"""Helper utility module to wrap up common AWS SQS operations."""
 import json
 
 import boto3
